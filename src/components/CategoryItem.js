@@ -1,16 +1,16 @@
 import React from 'react';
 
-export default function CategoryItemDumb(props) {
+export default function CategoryItem(props) {
 
 	let newEditedType = props.category.type;
 	let newEditedName = props.category.name;
 
 	function setNewType(data) {
 		newEditedType = data.target.value;
-	} 
+	}
 	function setNewName(data) {
 		newEditedName = data.target.value;
-	} 
+	}
 
 	return (
 		<li className="categories-item">

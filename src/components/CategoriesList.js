@@ -65,15 +65,18 @@ export default class CategoriesList extends Component {
 				<h1>Categories List container</h1>
 				{this.state.categoriesDidFetch
 					? <ul className="categories-list">
-						{this.state.categoriesList.map((item) =>
-							<CategoryItem
-								toggleEditItemHandler={this.toggleEditItemHandler}
-								deleteItemHandler={this.deleteItemHandler}
-								saveEditedItemHandler={this.saveEditedItemHandler}
-								category={item}
-								key={item.id}>
-							</CategoryItem>
-						)}
+						{this.state.categoriesList.length > 0
+							? this.state.categoriesList.map((item) =>
+								<CategoryItem
+									toggleEditItemHandler={this.toggleEditItemHandler}
+									deleteItemHandler={this.deleteItemHandler}
+									saveEditedItemHandler={this.saveEditedItemHandler}
+									category={item}
+									key={item.id}>
+								</CategoryItem>
+							)
+							: <li>You have no categories :(</li>
+						}
 					</ul>
 					: ''}
 

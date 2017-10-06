@@ -1,3 +1,4 @@
+// For adding mocked categories to localStorage
 export function addCategoriesStorage() {
 	const categoriesList = [{
 		'id': 1,

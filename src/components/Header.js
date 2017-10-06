@@ -4,8 +4,8 @@ import logo from '../spendee.svg';
 
 export default function Header() {
 	return <header className="header">
-		<span style={{fontWeight: 600, color: '#222'}}>
-			<img src={logo} alt="" className="header-logo"/>
+		<span style={{ fontWeight: 600, color: '#222' }}>
+			<img src={logo} alt="" className="header-logo" />
 			&gt; Cash Wallet
 			</span>
 		<ul className="header__nav">
@@ -13,6 +13,6 @@ export default function Header() {
 			<li className="nav__item"><NavLink to="/categories" className="nav__link">Categories</NavLink></li>
 			<li className="nav__item"><NavLink to="/overview" className="nav__link">Overview</NavLink></li>
 		</ul>
-		<span>USER</span>
+		<span>Awesome User</span>
 	</header>
 }
