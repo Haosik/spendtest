@@ -27,7 +27,7 @@ export default class CategoriesList extends Component {
 
 	toggleEditItemHandler = (item) => {
 		// Making new array in Redux way, without using Redux
-		let index = this.state.categoriesList.indexOf(item);
+		const index = this.state.categoriesList.indexOf(item);
 		let newCategoriesList = [...this.state.categoriesList];
 		newCategoriesList[index]['editing'] = !(newCategoriesList[index]['editing']);
 		this.setState({
@@ -35,12 +35,25 @@ export default class CategoriesList extends Component {
 		});
 	}
 	saveEditedItemHandler = (item, newType, newName) => {
-		// Making new array in Redux way, without using Redux
-		let index = this.state.categoriesList.indexOf(item);
+		// Making new array almost in Redux way, without using Redux
+		const index = this.state.categoriesList.indexOf(item);
 		let newCategoriesList = [...this.state.categoriesList];
 		newCategoriesList[index]['type'] = newType;
 		newCategoriesList[index]['name'] = newName;
 		newCategoriesList[index]['editing'] = false;
+		this.setState({
+			categoriesList: newCategoriesList
+		});
+	}
+	deleteItemHandler = (item) => {
+		// Making new array in Redux way, without using Redux
+		const index = this.state.categoriesList.indexOf(item);
+		let newCategoriesList = [...this.state.categoriesList];
+		const newCategoriesListStart = newCategoriesList.slice(0, index);
+		const newCategoriesListEnd = newCategoriesList.slice(index + 1);
+		newCategoriesList = newCategoriesListStart.concat(newCategoriesListEnd);
+		console.log(newCategoriesList);
+		console.log(index);
 		this.setState({
 			categoriesList: newCategoriesList
 		});
@@ -52,9 +65,10 @@ export default class CategoriesList extends Component {
 				<h1>Categories List container</h1>
 				{this.state.categoriesDidFetch
 					? <ul className="categories-list">
-						{this.state.categoriesList.map((item, ind) =>
+						{this.state.categoriesList.map((item) =>
 							<CategoryItem
 								toggleEditItemHandler={this.toggleEditItemHandler}
+								deleteItemHandler={this.deleteItemHandler}
 								saveEditedItemHandler={this.saveEditedItemHandler}
 								category={item}
 								key={item.id}>
