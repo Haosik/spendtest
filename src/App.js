@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Route,
-  Redirect
+  Route
 } from 'react-router-dom';
 import { addCategoriesStorage, fetchCategoriesList } from './lib/helpers';
 
@@ -40,7 +39,7 @@ class App extends Component {
   // New React 16 Error Catch method.
   componentDidCatch(error, info) {
     document.write(error,
-      'Most likely, mocked data has just added to localStorage. Please refresh the page!')
+      'Most likely, mocked data has just added to localStorage. Please click <a href="https://haosik.github.io/spendtest/">https://haosik.github.io/spendtest/</a>')
   }
 
   render() {
@@ -51,7 +50,7 @@ class App extends Component {
           <Header></Header>
           <div className="container">
             <div style={{ flex: 1, padding: '10px' }}>
-              <Route exact path="/" render={() => <Redirect to="/transactions" />} />
+              {/* <Route exact path="/" render={() => <Redirect to="/transactions" />} /> */}
               {routes.map((route, index) => (
                 <Route
                   key={index}

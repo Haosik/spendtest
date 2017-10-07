@@ -1,48 +1,72 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default function CategoryItem(props) {
+export default class CategoryItem extends Component {
+	constructor(props) {
+		super(props);
 
-	let newEditedType = props.category.type;
-	let newEditedName = props.category.name;
-
-	function setNewType(data) {
-		newEditedType = data.target.value;
-	}
-	function setNewName(data) {
-		newEditedName = data.target.value;
+		this.state = {
+			newEditedType: this.props.category.type,
+			newEditedName: this.props.category.name
+		}
 	}
 
-	return (
-		<li className="categories-item">
-			{props.category.editing
-				? <form action="#" onSubmit={(e) => {
-					e.preventDefault();
-					props.saveEditedItemHandler(props.category, newEditedType, newEditedName)
+	setNewType = (data) => {
+		this.setState({
+			newEditedType: data.target.value
+		});
+
+	}
+	setNewName = (data) => {
+		this.setState({
+			newEditedName: data.target.value
+		});
+
+	}
+	render() {
+
+
+		return (
+			<li className="categories-item" >
+				{
+					this.props.category.editing
+						? <form action="#" onSubmit={(e) => {
+							e.preventDefault();
+							this.props.saveEditedItemHandler(this.props.category, this.state.newEditedType, this.state.newEditedName)
+						}
+						}>
+							<select className="categories-input" name="newType" id="newCategoryType" onChange={(e) => this.setNewType(e)}>
+								<option value={this.props.category.type}>{this.props.category.type}</option>
+								<option value={this.props.category.type === 'expense'
+									? 'income'
+									: 'expense'}>
+									{this.props.category.type === 'expense' ? 'income' : 'expense'}
+								</option>
+							</select>
+							<input className="categories-input"
+								type="text"
+								name="newName"
+								defaultValue={this.props.category.name}
+								id="newCategoryName"
+								onChange={(e) => this.setNewName(e)} />
+							{this.props.category.editing
+								? <button className="categories-item__btn">Save</button>
+								: ''}
+						</form>
+						: <div>
+							<span
+								className="categories-span categories-span__type"
+								style={{ color: this.props.category.type.toLowerCase() === 'income' ? 'green' : 'red' }}>
+								{this.props.category.type}
+							</span>
+							<span className="categories-span categories-span__name">{this.props.category.name}</span>
+						</div>
 				}
-				}>
-					<select className="categories-input" name="newType" id="newCategoryType" onChange={(e) => setNewType(e)}>
-						<option value={props.category.type}>{props.category.type}</option>
-						<option value={props.category.type === 'expense' ? 'income' : 'expense'}>{props.category.type === 'expense' ? 'income' : 'expense'}</option>
-					</select>
-					<input className="categories-input" type="text" name="newName" defaultValue={props.category.name} id="newCategoryName" onChange={(e) => setNewName(e)} />
-					{props.category.editing
-						? <button className="categories-item__btn">Save</button>
-						: ''}
-				</form>
-				: <div>
-					<span
-						className="categories-span categories-span__type"
-						style={{ color: props.category.type.toLowerCase() === 'income' ? 'green' : 'red' }}>
-						{props.category.type}
-					</span>
-					<span className="categories-span categories-span__name">{props.category.name}</span>
-				</div>
-			}
-			<div>
+				< div >
 
-				<button className="categories-item__btn" onClick={() => props.toggleEditItemHandler(props.category)}>Edit</button>
-				<button className="categories-item__btn" onClick={() => props.deleteItemHandler(props.category)}>Delete</button>
-			</div>
-		</li>
-	)
+					<button className="categories-item__btn" onClick={() => this.props.toggleEditItemHandler(this.props.category)}>Edit</button>
+					<button className="categories-item__btn" onClick={() => this.props.deleteItemHandler(this.props.category)}>Delete</button>
+				</div>
+			</li>
+		)
+	}
 }
