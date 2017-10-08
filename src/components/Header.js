@@ -13,6 +13,6 @@ export default function Header() {
 			<li className="nav__item"><NavLink to="/categories" className="nav__link">Categories</NavLink></li>
 			<li className="nav__item"><NavLink to="/overview" className="nav__link">Overview</NavLink></li>
 		</ul>
-		<span>Awesome User</span>
+		<span style={{fontWeight: '600', color: '#324c5b', fontSize: '1.4rem'}}>Awesome User</span>
 	</header>
 }

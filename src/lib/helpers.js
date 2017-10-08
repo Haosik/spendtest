@@ -4,7 +4,7 @@ export function addCategoriesStorage() {
 		'id': 1,
 		'type': 'expense',
 		'name': 'Clothes',
-		'color': 'tomato',
+		'color': 'darkmagenta',
 		'editing': false
 	},
 	{
@@ -18,7 +18,7 @@ export function addCategoriesStorage() {
 		'id': 3,
 		'type': 'income',
 		'name': 'Job',
-		'color': 'darkmagenta',
+		'color': 'green',
 		'editing': false
 	},
 	{

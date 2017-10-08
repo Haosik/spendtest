@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CategoryItem from './CategoryItem';
+import AddCategory from './AddCategory';
 import { fetchCategoriesList, fetchColorsList } from '../lib/helpers';
 
 export default class CategoriesList extends Component {
@@ -21,6 +22,7 @@ export default class CategoriesList extends Component {
 			})
 		})
 		fetchColorsList.then(result => {
+			result.sort();
 			this.setState({
 				colorsList: result,
 			})
@@ -64,10 +66,29 @@ export default class CategoriesList extends Component {
 			categoriesList: newCategoriesList
 		});
 	}
+	addNewItemHandler = (item) => {
+		const {categoriesList} = this.state;
+		const newIndex = categoriesList[categoriesList.length - 1].id + 1;
+		const newItem = {
+			id: newIndex,
+			type: item.type,
+			name: item.name,
+			color: item.color,
+			editing: false
+		};
+		const newCategoriesList = [...this.state.categoriesList, newItem];
+		this.setState({
+			categoriesList: newCategoriesList
+		});
+		console.log(this.state.categoriesList);
+	}
 
 	render() {
 		return (
 			<section className="categories-container box">
+				<h4>Create new category:</h4>
+				<AddCategory addNewCategory={this.addNewItemHandler} colors={this.state.colorsList}></AddCategory>
+
 				<h1>Categories List container</h1>
 				{this.state.categoriesDidFetch
 					? <ul className="categories-list">

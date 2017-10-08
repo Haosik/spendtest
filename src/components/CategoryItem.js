@@ -14,8 +14,8 @@ export default class CategoryItem extends Component {
 		this.setState({
 			newEditedColor: data.target.value
 		});
-
 	}
+
 	setNewName = (data) => {
 		this.setState({
 			newEditedName: data.target.value
@@ -32,14 +32,19 @@ export default class CategoryItem extends Component {
 						this.props.saveEditedItemHandler(this.props.category, this.state.newEditedColor, this.state.newEditedName)
 					}
 					}>
-						<select 
-						className="categories-input" 
-						name="newColor" 
-						id="newCategoryColor" 
-						defaultValue={this.props.category.color}
-						onChange={(e) => this.setNewColor(e)}>
+						<select
+							className="categories-input"
+							name="newColor"
+							id="newCategoryColor"
+							defaultValue={this.props.category.color}
+							onChange={(e) => this.setNewColor(e)}>
 							{(this.props.colors).map((elem, ind) => {
-								return <option style={{color: this.props.colors[ind]}} key={ind} value={this.props.colors[ind]}>{this.props.colors[ind]}</option>
+								return <option
+									style={{ color: this.props.colors[ind] }}
+									key={ind}
+									value={this.props.colors[ind]}>
+									{this.props.colors[ind]}
+								</option>
 							})}
 						</select>
 						<input className="categories-input"
