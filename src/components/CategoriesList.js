@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import CategoryItem from './CategoryItem';
-import { fetchCategoriesList } from '../lib/helpers';
+import { fetchCategoriesList, fetchColorsList } from '../lib/helpers';
 
 export default class CategoriesList extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
+			colorsList: [],
 			categoriesList: [],
 			categoriesDidFetch: false
 		};
@@ -17,6 +18,11 @@ export default class CategoriesList extends Component {
 			this.setState({
 				categoriesList: result,
 				categoriesDidFetch: true
+			})
+		})
+		fetchColorsList.then(result => {
+			this.setState({
+				colorsList: result,
 			})
 		})
 	}
@@ -34,11 +40,11 @@ export default class CategoriesList extends Component {
 			categoriesList: newCategoriesList
 		});
 	}
-	saveEditedItemHandler = (item, newType, newName) => {
+	saveEditedItemHandler = (item, newColor, newName) => {
 		// Making new array almost in Redux way, without using Redux
 		const index = this.state.categoriesList.indexOf(item);
 		let newCategoriesList = [...this.state.categoriesList];
-		newCategoriesList[index]['type'] = newType;
+		newCategoriesList[index]['color'] = newColor;
 		newCategoriesList[index]['name'] = newName;
 		newCategoriesList[index]['editing'] = false;
 		this.setState({
@@ -72,6 +78,7 @@ export default class CategoriesList extends Component {
 									deleteItemHandler={this.deleteItemHandler}
 									saveEditedItemHandler={this.saveEditedItemHandler}
 									category={item}
+									colors={this.state.colorsList}
 									key={item.id}>
 								</CategoryItem>
 							)

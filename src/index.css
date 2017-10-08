@@ -166,14 +166,15 @@ body {
 .categories-span {
   display: inline-block;
   vertical-align: middle;
+  padding-right: 5px;
 }
 
 .categories-span__type {
-  width: 100px;
+  width: 120px;
 }
 
 .categories-input {
-  width: 100px;
+  width: 120px;
   height: 34px;
   padding: 0;
   margin-right: 3px;
