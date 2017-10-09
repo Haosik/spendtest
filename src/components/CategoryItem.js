@@ -15,7 +15,6 @@ export default class CategoryItem extends Component {
 			newEditedColor: data.target.value
 		});
 	}
-
 	setNewName = (data) => {
 		this.setState({
 			newEditedName: data.target.value

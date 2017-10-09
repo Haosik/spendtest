@@ -46,7 +46,7 @@ export default class TransactionsList extends Component {
 			<section className="transactions-container box">
 				{this.state.addTransactionVisible ? <AddTransaction transactionToggleHandler={this.addTransactionToggle}></AddTransaction> : ''}
 
-				<h1>Transactions List container</h1>
+				<h2>Transactions List</h2>
 				<button className="add-transaction-btn" onClick={this.addTransactionToggle}>
 					<span>{this.state.addTransactionVisible ? 'Close' : 'Add transaction'}</span>
 				</button>

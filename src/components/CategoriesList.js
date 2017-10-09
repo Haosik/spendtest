@@ -28,7 +28,6 @@ export default class CategoriesList extends Component {
 			})
 		})
 	}
-
 	componentDidMount() {
 		console.log('Mounted Categories List');
 	}
@@ -80,7 +79,6 @@ export default class CategoriesList extends Component {
 		this.setState({
 			categoriesList: newCategoriesList
 		});
-		console.log(this.state.categoriesList);
 	}
 
 	render() {
@@ -89,7 +87,7 @@ export default class CategoriesList extends Component {
 				<h4>Create new category:</h4>
 				<AddCategory addNewCategory={this.addNewItemHandler} colors={this.state.colorsList}></AddCategory>
 
-				<h1>Categories List container</h1>
+				<h2>Categories List</h2>
 				{this.state.categoriesDidFetch
 					? <ul className="categories-list">
 						{this.state.categoriesList.length > 0
