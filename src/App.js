@@ -20,15 +20,15 @@ fetchCategoriesList.then(result => {
 
 const routes = [
   {
-    path: '/transactions',
+    path: '/spendtest/transactions',
     main: () => <TransactionsList></TransactionsList>
   },
   {
-    path: '/categories',
+    path: '/spendtest/categories',
     main: () => <CategoriesList></CategoriesList>
   },
   {
-    path: '/overview',
+    path: '/spendtest/overview',
     main: () => <Overview></Overview>
   }
 ]

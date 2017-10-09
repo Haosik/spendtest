@@ -9,9 +9,9 @@ export default function Header() {
 			&gt; Cash Wallet
 			</span>
 		<ul className="header__nav">
-			<li className="nav__item"><NavLink to="/transactions" className="nav__link">Transactions</NavLink></li>
-			<li className="nav__item"><NavLink to="/categories" className="nav__link">Categories</NavLink></li>
-			<li className="nav__item"><NavLink to="/overview" className="nav__link">Overview</NavLink></li>
+			<li className="nav__item"><NavLink to="/spendtest/transactions" className="nav__link">Transactions</NavLink></li>
+			<li className="nav__item"><NavLink to="/spendtest/categories" className="nav__link">Categories</NavLink></li>
+			<li className="nav__item"><NavLink to="/spendtest/overview" className="nav__link">Overview</NavLink></li>
 		</ul>
 		<span style={{fontWeight: '600', color: '#324c5b', fontSize: '1.4rem'}}>Awesome User</span>
 	</header>
