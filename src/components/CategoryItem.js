@@ -32,7 +32,7 @@ export default class CategoryItem extends Component {
 					}
 					}>
 						<select
-							className="categories-input"
+							className="default-input"
 							name="newColor"
 							id="newCategoryColor"
 							defaultValue={this.props.category.color}
@@ -46,7 +46,7 @@ export default class CategoryItem extends Component {
 								</option>
 							})}
 						</select>
-						<input className="categories-input"
+						<input className="default-input"
 							type="text"
 							name="newName"
 							defaultValue={this.props.category.name}

@@ -8,7 +8,7 @@ export default class AddTransaction extends Component {
 		this.state = {
 			activeCategoryType: 'income',
 			activeCategory: 'Car',
-			isNewTransaction: false,
+			categoriesListShown: true,
 			newTransaction: {
 				type: '',
 				category: '',
@@ -32,79 +32,99 @@ export default class AddTransaction extends Component {
 				incomeCategoriesList,
 				expenseCategoriesList,
 				categoriesDidFetch: true
-			})
-		})
+			});
+		});
 		fetchColorsList.then(result => {
 			result.sort();
 			this.setState({
 				colorsList: result,
 			})
-		})
+		});
 	}
 
 	setCategoryTypeIncome = () => {
 		this.setState({
 			activeCategoryType: 'income'
-		})
+		});
 	}
 	setCategoryTypeExpense = () => {
 		this.setState({
 			activeCategoryType: 'expense'
-		})
+		});
 	}
-	setNewActiveCategoryHandler = (data) => {
+	setActiveCategory = (data) => {
 		this.setState({
 			activeCategory: data
-		})
+		});
+		this.closeCategoriesList();
+	}
+	openCategoriesList = (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		this.setState({
+			categoriesListShown: true
+		});
+	}
+	closeCategoriesList = (e) => {
+		this.setState({
+			categoriesListShown: false
+		});
 	}
 
 	render() {
 		return (
 			<section className="add-transaction__container">
 				<div onClick={this.props.transactionToggleHandler} className="add-transaction__shadow"></div>
-				<div className="add-transaction__inner">
+				<div className="add-transaction__inner" onClick={(e) => this.closeCategoriesList(e)}>
 					<h1 className="add-transaction__heading">Add transaction</h1>
 					<form onSubmit={(e) => e.preventDefault()} action="#" className="add-transaction__form">
 						<div className="add-transaction__category-wrap">
-							<input onClick={() => console.log(123)} type="text" readOnly value={this.state.activeCategory} />
-							<div className="add-transaction__category-flying">
-								<button
-									onClick={() => this.setCategoryTypeIncome()}
-									className={this.state.activeCategoryType === 'income' ? 'income-btn active' : 'income-btn'}>
-									Income
+							<input onClick={(e) => this.openCategoriesList(e)}
+								type="text"
+								className="default-input add-transaction__category-input"
+								readOnly
+								value={this.state.activeCategory} />
+							{this.state.categoriesListShown
+								? <div onClick={(e) => {e.preventDefault(); e.stopPropagation();}} className="add-transaction__category-flying">
+									<button
+										onClick={() => this.setCategoryTypeIncome()}
+										className={this.state.activeCategoryType === 'income' ? 'income-btn active' : 'income-btn'}>
+										Income
 								</button>
-								<button
-									onClick={() => this.setCategoryTypeExpense()}
-									className={this.state.activeCategoryType === 'expense' ? 'expense-btn active' : 'expense-btn'}>
-									Expense
+									<button
+										onClick={() => this.setCategoryTypeExpense()}
+										className={this.state.activeCategoryType === 'expense' ? 'expense-btn active' : 'expense-btn'}>
+										Expense
 								</button>
-								<ul className="add-transaction__category-list">
-									{this.state.activeCategoryType === 'income'
-										? (this.state.incomeCategoriesList).map((item, ind) => {
-											return <li key={item.id}>
-												<span
-												onClick={() => this.setNewActiveCategoryHandler(item.name)}
-													style={{ color: item.color, cursor: 'pointer' }}>
-													{item.name}
-												</span>
-											</li>
-										})
-										: (this.state.expenseCategoriesList).map((item, ind) => {
-											return <li key={item.id}>
-												<span
-												onClick={() => this.setNewActiveCategoryHandler(item.name)}
-													style={{ color: item.color, cursor: 'pointer' }}>
-													{item.name}
-												</span>
-											</li>
-										})}
-								</ul>
-							</div>
-
+									<ul className="add-transaction__category-list">
+										{this.state.activeCategoryType === 'income'
+											? (this.state.incomeCategoriesList).map((item, ind) => {
+												return <li key={item.id} className="add-transaction__category-item">
+													<span
+														onClick={() => this.setActiveCategory(item.name)}
+														className="add-transaction__category-link"
+														style={{ color: item.color}}>
+														{item.name}
+													</span>
+												</li>
+											})
+											: (this.state.expenseCategoriesList).map((item, ind) => {
+												return <li key={item.id} className="add-transaction__category-item">
+													<span
+														onClick={() => this.setActiveCategory(item.name)}
+														className="add-transaction__category-link"
+														style={{ color: item.color}}>
+														{item.name}
+													</span>
+												</li>
+											})}
+									</ul>
+								</div>
+								: null}
 						</div>
-						<input type="date" />
-						<input type="text" />
-						<input type="number" />
+						<input type="date" className="default-input" />
+						<input type="text" className="default-input" />
+						<input type="number" className="default-input" />
 					</form>
 				</div>
 			</section>

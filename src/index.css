@@ -26,6 +26,16 @@ body {
   background: #fff;
 }
 
+.default-input {
+  min-width: 140px;
+  height: 34px;
+  padding: 0 5px;
+  font-weight: 400;
+  border: 1px solid #e5ebee;
+  border-radius: 4px;
+  outline-color: #75F8CC;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -102,8 +112,6 @@ body {
 }
 
 .add-transaction-btn {
-  position: relative;
-  z-index: 31;
   display: inline-block;
   vertical-align: top;
   height: 34px;
@@ -139,37 +147,72 @@ body {
   width: 100%;
   height: 34px;
 }
+
+.add-transaction__category-input {
+  cursor: pointer;
+}
+
 .add-transaction__category-wrap {
   position: relative;
   z-index: 1;
 }
+
 .add-transaction__category-flying {
   position: absolute;
   z-index: 2;
   top: 100%;
   left: 0;
+  width: 100%;
+  padding: 3px;
   border-radius: 8px;
+  border: 1px solid #e5ebee;
+  border-top: none;
   background-color: #fff;
 }
+
 .add-transaction__category-flying button {
   display: inline-block;
   vertical-align: top;
-  padding: 0 1rem;
+  width: 50%;
+  padding: 1rem 0;
   border: none;
   border-radius: 8px;
   background-color: #f8f8f8;
   outline: none;
   cursor: pointer;
+  transition: background-color 0.25s, color 0.25s;
 }
+
 .add-transaction__category-flying .income-btn.active {
+  color: #f0f0f0;
   background-color: green;
 }
+
 .add-transaction__category-flying .expense-btn.active {
+  color: #f0f0f0;
   background-color: tomato;
 }
+
 .add-transaction__category-list {
-  padding: 0 3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
+.add-transaction__category-item {
+  padding: 0 10px;
+}
+
+.add-transaction__category-link {
+  display: inline-block;
+  vertical-align: top;
+  padding: 5px;
+  cursor: pointer;
+}
+.add-transaction__category-link:hover {
+  transform: translateX(3px);
+}
+
 /* Transactions END */
 
 
@@ -202,17 +245,6 @@ body {
 
 .categories-span__type {
   width: 140px;
-}
-
-.categories-input {
-  width: 140px;
-  height: 34px;
-  padding: 0 5px;
-  margin-right: 3px;
-  font-weight: 400;
-  border: 1px solid #e5ebee;
-  border-radius: 4px;
-  outline-color: #75F8CC;
 }
 
 .categories-input::-moz-placeholder {

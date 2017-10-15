@@ -61,7 +61,7 @@ export default class AddCategory extends Component {
 					<label className="add-category__label" htmlFor="newCategoryColor">Color</label>
 					<select
 						onChange={(e) => this.changeNewCategoryHandler('color', e.target.value)}
-						className="categories-input"
+						className="default-input"
 						name="newCategoryColor"
 						id="newCategoryColor"
 						style={{ color: this.state.newCategory.color }}>
@@ -75,7 +75,7 @@ export default class AddCategory extends Component {
 					<label className="add-category__label" htmlFor="newCategoryName">Name</label>
 					<input
 						onChange={(e) => this.changeNewCategoryHandler('name', e.target.value)}
-						className="categories-input"
+						className="default-input"
 						type="text"
 						name="newCategoryName"
 						id="newCategoryName"
@@ -87,7 +87,7 @@ export default class AddCategory extends Component {
 					<label className="add-category__label" htmlFor="newCategoryType">Type</label>
 					<select
 						onChange={(e) => this.changeNewCategoryHandler('type', e.target.value)}
-						className="categories-input"
+						className="default-input"
 						name="newCategoryType"
 						id="newCategoryType"
 						defaultValue="expense">

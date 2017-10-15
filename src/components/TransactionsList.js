@@ -3,9 +3,10 @@ import AddTransaction from './AddTransaction';
 import { fetchCategoriesList } from '../lib/helpers';
 
 const transactions = [
-	{ 'id': 1, 'type': 'income', 'amount': 2000, 'note': 'Monthly salary', 'category': 'Job', 'date': 1507116277956 },
-	{ 'id': 2, 'type': 'income', 'amount': 200, 'note': '', 'category': 'Car', 'date': 1507126487305 },
-	{ 'id': 3, 'type': 'expense', 'amount': 300, 'note': 'T-shirt', 'category': 'Clothes', 'date': 1507126635942 }
+	{ 'id': 1, 'type': 'income', 'amount': 2000, 'note': '', 'category': 'Job', 'date': 1507116277956 },
+	{ 'id': 2, 'type': 'income', 'amount': 200, 'note': 'Sold some puer', 'category': 'Aliexpress', 'date': 1507126487305 },
+	{ 'id': 3, 'type': 'expense', 'amount': 50, 'note': 'T-shirt', 'category': 'Clothes', 'date': 1507126635942 },
+	{ 'id': 4, 'type': 'expense', 'amount': 299, 'note': 'Reparing the rear window', 'category': 'Car', 'date': 1507126635942 }
 ];
 
 export default class TransactionsList extends Component {
@@ -52,7 +53,9 @@ export default class TransactionsList extends Component {
 				</button>
 				<ul>
 					{this.state.transactions.map((item, ind) =>
-						<li key={item.id}>{item.type}</li>
+						<li key={item.id}>
+						{item.type} {item.name} {item.note} {item.amount} {item.date}
+						</li>
 					)}
 				</ul>
 			</section>
